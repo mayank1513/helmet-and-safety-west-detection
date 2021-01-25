@@ -107,6 +107,8 @@ This process may take up to 12 hours or more depending on your sytem configurati
 
 To improve the performace you can setup and use cuda and tensorflow-gpu
 
+You can download the pretrained model for this data at - https://www.dropbox.com/s/rkirwm2rwvasnmj/full_yolo_helmet_vest_and_person.h5?dl=0 and save it in the root folder.
+
 ### 5. Perform detection using trained weights on an image by running
 
 `python predict.py -c config.json -w /path/to/best_weights.h5 -i /path/to/image/or/video`

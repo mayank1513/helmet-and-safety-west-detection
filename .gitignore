@@ -1,6 +1,9 @@
 # large model files
 *.h5
 
+# local files
+local_test/
+
 # ide files
 .vscode
 .idea
