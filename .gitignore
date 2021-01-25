@@ -3,6 +3,7 @@
 
 # local files
 local_test/
+live_detected.mp4
 
 # ide files
 .vscode

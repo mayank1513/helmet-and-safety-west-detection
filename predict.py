@@ -64,7 +64,34 @@ def _main_(args):
                  "person": (0, 255, 0),
                  "safety vest": (0, 0, 255)}
 
-    if image_path[-4:] == '.mp4':
+    if image_path is None:
+        video_out = 'live_detected.mp4'
+        cap = cv2.VideoCapture(0)
+        fps = 15
+        frame_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        frame_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        video_writer = cv2.VideoWriter(video_out,
+                                       cv2.VideoWriter_fourcc(*'MPEG'),
+                                       fps,
+                                       (frame_w, frame_h))
+        while(True):
+            # Capture frame-by-frame
+            ret, image = cap.read()
+            boxes = yolo.predict(image)
+            image = draw_boxes(
+                image, boxes, config['model']['labels'], color_map)
+            # Display the resulting frame
+            cv2.imshow('frame', image)
+            video_writer.write(np.uint8(image))
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+        # When everything done, release the capture
+        cap.release()
+        video_writer.release()
+        cv2.destroyAllWindows()
+
+    elif image_path[-4:] == '.mp4':
         video_out = image_path[:-4] + '_detected' + image_path[-4:]
         video_reader = cv2.VideoCapture(image_path)
 
