@@ -1,6 +1,8 @@
-tensorflow==1.13.1
-keras==2.2.4
+tensorflow==2.11.1
+keras==2.6.0rc3
 imgaug==0.4.0
 opencv-python==4.5.1.48
 h5py==2.10.0
 tqdm==4.56.0
+numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
+wheel>=0.38.0 # not directly required, pinned by Snyk to avoid a vulnerability
